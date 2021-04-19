@@ -1,0 +1,84 @@
+﻿@model MoneyApp.Models.PayCentre
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="col-md-10 mx-auto py-4 container-fluid">
+    <div class="card">
+        <div class="card-header bg-secondary text-uppercase text-white">
+            <h4>Pay Centre Details</h4>
+        </div>
+        <div class="card-body">
+            <div>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentreName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentreName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentreAddress)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentreAddress)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentreAccountNo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentreAccountNo)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.DateCreated.ToShortDateString()
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Capital)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.Capital.ToString("c")
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentreTabNumber)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentreTabNumber)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentrePhone)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentrePhone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CentrePOSNumber)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CentrePOSNumber)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.UpdateDate)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.UpdateDate)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.UpdateBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.UpdateBy)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" class="btn btn-sm btn-secondary rounded-0 text-uppercase" asp-route-id="@Model.Id">Edit</a>
+                <a asp-action="Index" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fa fa-fast-backward"></i> Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+﻿@model MoneyApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-secondary text-uppercase text-white">
+            <h4>Customer Details</h4>
+        </div>
+        <div class="card-body">
+            <div>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.FullName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PayCentre)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PayCentre.CentreName)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        Number of Transactions
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Transactions.Count)
+                    </dd>
+
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.UploadReceipts)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.UploadReceipts)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CreateDate)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CreateDate)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.UpdateDate)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.UpdateDate)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.UpdateBy)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.UpdateBy)
+                    </dd>
+                </dl>
+                <button data-toggle="collapse" data-target="#collapse-trans" class="btn btn-success btn-sm"><span><i class="fa fa-history"></i> VIEW HISTORY</span></button>
+            </div>          
+            <br/>
+            <div id="collapse-trans" class="collapse">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Payee Name
+                            </th>
+                            <th>
+                                Transaction Type
+                            </th>
+                            <th>
+                                Bank Name
+                            </th>
+                            <th>
+                                Account No
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th>
+                                Bank Charge
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                CardNo
+                            </th>
+                            <th>
+                                Create Date
+                            </th>
+                            <th>
+                                Staff Responsible
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Transactions)
+                        {
+                            <tr>
+                                <td>@item.PayeeName</td>
+                                <td>@Html.DisplayFor(modelItem => item.TransactionType)</td>
+                                <td>@item.BankName</td>
+                                <td>@item.AccountNo</td>
+                                <td>@item.Location</td>
+                                <td>@item.BankCharge.ToString("c")</td>
+                                <td>@item.Amount.ToString("c")</td>
+                                @if (@item.TransactionType.ToString().ToLower() == "withdraw")
+                                {
+                                    <td> N / A</td>
+                                }
+                                else
+                                {
+                                    <td>@item.CardNo</td>
+                                }
+                                <td>@item.CreateDate</td>
+                                <td>@item.CreatedBy</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <a asp-action="Edit" class="btn btn-sm btn-secondary rounded-0 text-uppercase" asp-route-id="@Model.CustomerId">Edit</a>
+                <a asp-action="Index" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fa fa-fast-backward"></i> Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model MoneyApp.Models.Staff
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+    <div class="col-md-10 mx-auto py-4">
+        <div class="card">
+            <div class="card-header bg-secondary text-uppercase text-white">
+                <h4>Delete Employee </h4>
+            </div>
+            <div class="card-body">
+                <h3>Are you sure you want to delete '@Model.FullName'?</h3>
+                <br/>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Yes" class="btn btn-danger" /> &nbsp;<a asp-action="Index" class="btn btn-default">No</a>
+                </form>
+            </div>
+        </div>
+    </div>

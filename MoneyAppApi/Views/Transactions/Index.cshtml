@@ -1,0 +1,97 @@
+﻿@model IEnumerable<MoneyApp.Models.Transaction>
+
+
+<br />
+
+<h4 class="text-center text-uppercase">List of Transactions</h4>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionType)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.IsWithdrawal)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.PayeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNo)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.BankCharge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CardNo)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionType)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.IsWithdrawal)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PayeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNo)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>*@
+                <td>
+                    @item.BankCharge.ToString("c")
+                </td>
+                <td>
+                    @item.Amount.ToString("c")
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CardNo)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.TransactionId">View</a> |
+                    <a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

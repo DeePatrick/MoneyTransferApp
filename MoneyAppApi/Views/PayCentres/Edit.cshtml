@@ -1,0 +1,95 @@
+﻿@model MoneyApp.Models.PayCentre
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="col-md-10 mx-auto py-4 container-fluid">
+    <div class="card">
+        <div class="card-header bg-secondary text-uppercase text-white">
+            <h4>Edit Centre </h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentreName" class="control-label"></label>
+                            <input asp-for="CentreName" class="form-control" />
+                            <span asp-validation-for="CentreName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentreAddress" class="control-label"></label>
+                            <input asp-for="CentreAddress" class="form-control" />
+                            <span asp-validation-for="CentreAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentreAccountNo" class="control-label"></label>
+                            <input asp-for="CentreAccountNo" class="form-control" />
+                            <span asp-validation-for="CentreAccountNo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DateCreated" class="control-label"></label>
+                            <input asp-for="DateCreated" class="form-control" />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Capital" class="control-label"></label>
+                            <input asp-for="Capital" class="form-control" />
+                            <span asp-validation-for="Capital" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentreTabNumber" class="control-label"></label>
+                            <input asp-for="CentreTabNumber" class="form-control" />
+                            <span asp-validation-for="CentreTabNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentrePhone" class="control-label"></label>
+                            <input asp-for="CentrePhone" class="form-control" />
+                            <span asp-validation-for="CentrePhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="CentrePOSNumber" class="control-label"></label>
+                            <input asp-for="CentrePOSNumber" class="form-control" />
+                            <span asp-validation-for="CentrePOSNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+              
+
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-sm btn-secondary rounded-0 text-uppercase" />
+                    <a asp-action="Index" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fa fa-fast-backward"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

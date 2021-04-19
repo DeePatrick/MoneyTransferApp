@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MoneyApp.Models.PayCentre>
+<br />
+<div class="container-fluid">
+    <h4 class="text-center text-uppercase">List of Pay Centres</h4>
+
+    <p>
+        <a asp-action="Create" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+    </p>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Centre
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Account No
+                </th>
+                <th>
+                    Date Created
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capital)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CentreTabNumber)
+                    </th>*@
+                <th>
+                    Phone
+                </th>
+                <th>
+                    POS
+                </th>
+
+                @*<th>
+                        @Html.DisplayNameFor(model => model.UpdateDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdateBy)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentreName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentreAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentreAccountNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capital)
+                    </td>
+                    @*<th>
+                            @Html.DisplayFor(modelItem => item.CentreTabNumber)
+                        </th>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentrePhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CentrePOSNumber)
+                    </td>
+                    @*
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdateBy)
+                        </td>*@
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

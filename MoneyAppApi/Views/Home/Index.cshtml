@@ -1,0 +1,90 @@
+﻿@{
+    @using Microsoft.AspNetCore.Identity
+    @using MoneyApp.Models
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+
+    ViewData["Title"] = "Home Page";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <main class="vh-300">
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>Learn about <a href="#">Money App</a>.</p>
+        </div>
+    </main>
+}
+else
+{
+
+    <main class="vh-300">
+        <br />
+        <div class="container tw-hero__container">
+            <div class="row">
+                <div class="">
+                    <div>
+                        <h1 class="tw-title-transition__title text-inverse text-xs-center text-lg-left m-b-1 m-t-4 tw-title-transition__title--english">
+                            No Bank nearby...   <br />
+                            No problem...   <br />
+                            MoneyApp The cheap, fast way to send money even when isolated
+                            <span class="text-info">.</span>
+                        </h1>
+                        <p class="tw-title-transition__subtitle m-t-3 hidden-xs hidden-sm text-xs-center text-lg-left p-r-4">
+                            <span>Join over 8 million people who get the real exchange rate with TransferWise. We’re <a href="https://transferwise.com/upto8xcheaper" target="_blank">on average 8x cheaper</a> than leading UK high street banks.</span>
+                        </p>
+
+                    </div><div class="tw-trust-elements row m-t-5 visible-lg visible-xl">
+                        <div class="col-sm-6 m-t-3">
+
+                        </div>
+                        <div class="col-sm-6 m-t-3">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-push-1 col-lg-push-1 col-lg-5 m-t-2 m-b-0" style="display:none;">
+                    <div>
+                        <div class="tw-calculator">
+                            <div data-tracking-id="calculator" class="">
+                                <div class="form-group form-group-lg m-b-0">
+                                    <label class="control-label" for="tw-calculator-source">You send</label>
+                                    <div class="tw-money-input input-group input-group-lg">
+                                        <input type="text" id="tw-calculator-source" value="1,000" inputmode="decimal" class="form-control" placeholder="" autocomplete="off"><span class="input-group-btn amount-currency-select-btn">
+                                            <div class="tw-select btn-group btn-block dropdown">
+                                                <button class="btn btn-input btn-input-inverse btn-addon btn-lg dropdown-toggle" type="button" aria-expanded="false">
+                                                    <span><i class="currency-flag currency-flag-gbp hidden-xs"></i>GBP</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div><ul class="sequence sequence-top sequence-bottom tw-calculator-breakdown sequence-inverse tw-calculator-breakdown--inverse tw-calculator-breakdown--detailed">
+                                    <li>
+                                        <span class="sequence-icon tw-calculator-breakdown__icon">–</span><span class="tw-calculator-breakdown-item__left"><strong>3.75 GBP</strong></span><span class="tw-calculator-breakdown-item__right">
+                                            <span class="m-r-1" data-tracking-id="calculator-payment-select">
+                                                <div class="tw-select btn-group dropdown">
+                                                    <button class="btn btn-input btn-input-inverse btn-addon btn-sm dropdown-toggle" type="button" aria-expanded="false">
+                                                        <span>Low cost transfer</span><span class="caret"></span>
+                                                    </button>
+                                                </div>
+                                            </span><span style="text-transform:none">fee</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="sequence-icon tw-calculator-breakdown__icon">=</span>
+                                        <span class="tw-calculator-breakdown-item__left">996.25 GBP</span><span class="tw-calculator-breakdown-item__right">Amount we’ll convert</span>
+                                    </li>
+                                </ul><div class="form-group form-group-lg m-b-0"><label class="control-label" for="tw-calculator-target">Recipient gets </label><div class="tw-money-input input-group input-group-lg"><input type="text" id="tw-calculator-target" value="1,090.41" inputmode="decimal" class="form-control" placeholder="" autocomplete="off"><span class="input-group-addon input-lg"><span class="tw-tooltip-container" aria-describedby="t7bpyn"><div class="tooltip fade top " role="tooltip" id="t7bpyn" style="top: -125px; left: 355.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">If you need more than 2 hours to pay, click the lock to make sure your recipient gets exactly 1,090.41 EUR.</div></div><a class="tw-calculator__amount-lock text-muted"><i class="icon icon-unlock"></i></a></span></span><span class="input-group-btn amount-currency-select-btn"><div class="tw-select btn-group btn-block dropdown"><button class="btn btn-input btn-input-inverse btn-addon btn-lg dropdown-toggle" type="button" aria-expanded="false"><span><i class="currency-flag currency-flag-eur hidden-xs"></i>EUR</span><span class="caret"></span></button></div></span></div></div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs row tw-calculator-extras__information extras__information-enter-done" data-test-id="info-visible"><div class="col-xs-6 text-xs-center col--with-separator">You could save vs banks<br><strong class="h4">40.74 GBP</strong></div><div class="col-xs-6 text-xs-center col--with-separator">Should arrive<br><strong class="h4">in 3 hours</strong></div></div><div class="row m-t-3 tw-calculator-actions"><div class="col-md-6"><button type="button" class="btn btn-primary btn-block">Compare price</button></div><div class="col-xs-12 col-md-6"><a class="btn btn-success btn-block" href="/register?interested_in=send_money_as_consumer&amp;context=landing_page&amp;cta=calculator_get_started&amp;redirect_url=%2FtransferFlow%23%2Fenterpayment%3Famount%3D1000%26sourceCurrency%3DGBP%26targetCurrency%3DEUR%26fixedTarget%3Dfalse%26guaranteedFixedTarget%3Dfalse%26paymentOptionType%3DREGULAR#/?redirectUrl=%2Fget-started%3Forigin%3DMTHPCalculator%26redirectUrl%3D%252FtransferFlow%2523%252Fenterpayment%253Famount%253D1000%2526sourceCurrency%253DGBP%2526targetCurrency%253DEUR%2526fixedTarget%253Dfalse%2526guaranteedFixedTarget%253Dfalse%2526paymentOptionType%253DREGULAR" target="_top">Get started</a></div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+}

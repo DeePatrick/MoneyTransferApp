@@ -1,0 +1,121 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MoneyApp.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MoneyApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/simple-sidebar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700,700italic,400italic,300italic,300,100italic,100,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,500,700,800,600,300,200' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">
+                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">
+                    </a>
+                </div>
+                <div class="list-group list-group-flush" style="margin-top:40px !important">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="PayCentres" asp-action="Index">Pay Centres</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Staffs" asp-action="Index">Employees</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Home" asp-action="Privacy">Events</a>
+
+                    }
+                    else if (User.IsInRole("Manager"))
+                    {
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Staffs" asp-action="Index">Employees</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Home" asp-action="Privacy">Events</a>
+                    }
+                    else
+                    {
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Staffs" asp-action="Index">Employees</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+                        <a class="list-group-item list-group-item-action bg-light" asp-area="" asp-controller="Home" asp-action="Privacy">Events</a>
+                    }
+
+
+                </div>
+            </div>
+        }
+
+
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+                    <partial name="_LoginPartial" />
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+
+            <div class="content px-4 container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid">
+            &copy; 2020 - MoneyApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        function footerAdjust() {
+            var documentHeight = $(".wraper").height();
+            var documentHeight1 = $(document).height();
+            var windowHeight = $(window).height();
+            var footerHeight = $(".footer").height();
+            $(".d-flex").css({ 'min-height': "100%", "height": documentHeight1 });
+            if (documentHeight <= windowHeight) {
+                $(".footer").css({
+                    'position': 'fixed',
+                    'bottom': '0px'
+                });
+            } else {
+                $(".footer").css({
+                    'position': 'relative',
+                    'bottom': '0px'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
